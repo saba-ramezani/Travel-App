@@ -29,7 +29,7 @@ const Navbar = () => {
             />
         </div>
         <Image
-            src={toggle ? "/close.svg" : "/menu.svg"}
+            src={toggle ? "/close-black.svg" : "/menu.svg"}
             alt='menu'
             width={40}
             height={40}
@@ -43,11 +43,11 @@ const Navbar = () => {
             }}
         ></Image>
         {toggle && (
-            <div className='flex gap-12 lg:hidden flex-col z-50 absolute top-[72px] right-5 bg-gray-200 rounded-[20px] py-5 px-6 border-[1px] border-black'>
+            <div className='flex gap-12 lg:hidden flex-col z-50 absolute top-[72px] right-5 bg-gray-200 rounded-[20px] py-5 px-6 '>
                 <ul>
                     {NAV_LINKS.map((link, index) => (
-                        <Link className={`regular-16 text-gray-50 flexCenter cursor-pointer py-3
-                         transition-all hover:font-bold ${index !== NAV_LINKS.length - 1 ? "border-b-[1px] border-b-gray-30" : "border-none"} `} href={link.href} key={link.key}>{link.label}</Link>
+                        <Link className={`regular-16 text-black flexCenter cursor-pointer py-3
+                         transition-all hover:font-bold ${index !== NAV_LINKS.length - 1 ? "border-b-[1px] border-b-green-500" : "border-none"} `} href={link.href} key={link.key}>{link.label}</Link>
                     ))}
                 </ul>
                 <div className='lg:hidden flexCenter'>
