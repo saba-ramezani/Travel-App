@@ -1,10 +1,15 @@
+"use client";
+
 import { NAV_LINKS } from '@/constants'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, {useState} from 'react'
 import Button from './Button'
 
 const Navbar = () => {
+
+    const [toggle, setToggle] = useState(false);
+
   return (
     <nav className='flexBetween max-container padding-container relative z-30 py-5'>
         <Link href="/">
@@ -23,6 +28,38 @@ const Navbar = () => {
                 variant='btn_dark_green'
             />
         </div>
+        <Image
+            src={toggle ? "/close.svg" : "/menu.svg"}
+            alt='menu'
+            width={40}
+            height={40}
+            className='inline-block cursor-pointer lg:hidden bg-green-200 p-2 rounded-full'
+            onClick={() => {
+                if (toggle) {
+                    setToggle(false);
+                } else {
+                    setToggle(true);
+                }
+            }}
+        ></Image>
+        {toggle && (
+            <div className='flex gap-12 lg:hidden flex-col z-50 absolute top-[72px] right-5 bg-gray-200 rounded-[20px] py-5 px-6 border-[1px] border-black'>
+                <ul>
+                    {NAV_LINKS.map((link, index) => (
+                        <Link className={`regular-16 text-gray-50 flexCenter cursor-pointer py-3
+                         transition-all hover:font-bold ${index !== NAV_LINKS.length - 1 ? "border-b-[1px] border-b-gray-30" : "border-none"} `} href={link.href} key={link.key}>{link.label}</Link>
+                    ))}
+                </ul>
+                <div className='lg:hidden flexCenter'>
+                    <Button
+                        type='button'
+                        title='Login'
+                        icon='/user.svg'
+                        variant='btn_dark_green'
+                    />
+                </div>
+            </div>
+        )}
     </nav>
   )
 }
